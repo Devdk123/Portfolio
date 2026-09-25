@@ -29,6 +29,14 @@ const achievements = [
 
 const skills = ['HTML & CSS', 'JavaScript', 'React', 'Next.js', 'Responsive UI', 'UI/UX', 'Figma', 'Bootstrap', 'APIs', 'Git & GitHub', 'Animation', 'Performance']
 
+const skillGroups = [
+  ['Programming', ['JavaScript', 'Python', 'PHP', 'Java', 'C', 'SQL']],
+  ['Web Development', ['HTML5', 'CSS3', 'React', 'Next.js', 'Node.js', 'REST APIs']],
+  ['Design & Product', ['Figma', 'UI/UX', 'Responsive Design', 'Wireframing', 'Design Systems']],
+  ['Tools & DevOps', ['Git', 'GitHub', 'VS Code', 'Postman', 'Vercel', 'APIs']],
+  ['Exploring', ['AI Products', 'Agentic AI', 'Animation', 'Performance', 'Full Stack MERN']],
+]
+
 function App() {
   const [route, setRoute] = useState(window.location.pathname || '/')
   const [intro, setIntro] = useState(true)
@@ -92,7 +100,7 @@ function SkillsPage() {
     ['AI & Product Exploration', 'Turning ambitious product ideas into expressive prototypes, useful interfaces, and practical digital systems.', 'Adhikar AI, product experiments'],
     ['Technical Consulting', 'Choosing the right structure, tools, and interaction model to move an idea from rough concept to useful product.', 'Architecture, performance, delivery'],
   ]
-  return <section className="page section-wrap services-page"><PageIntro number="05" title={<>services<br /><em>&amp; consulting.</em></>} copy="Transforming concepts into scalable, useful products. I work across design, engineering, and the decisions that make a product hold together." /><h2 className="services-title">Verified core services</h2><div className="services-grid">{services.map(([title, description, proof], index) => <article className={`service-panel service-${index + 1}`} key={title}><h3>{title}</h3><p>{description}</p><strong>Proof:</strong><small>{proof}</small></article>)}</div></section>
+  return <section className="page section-wrap services-page"><PageIntro number="05" title={<>technical<br /><em>skills.</em></>} copy="The tools, systems, and habits I use to turn practical ideas into useful digital products." /><div className="skills-technical"><div className="skills-technical-heading"><span className="section-kicker">(01) technical arsenal</span><h2>Tools for<br /><em>building.</em></h2></div><div className="skills-groups">{skillGroups.map(([title, items]) => <article key={title}><h3>{title}</h3><div>{items.map((item) => <span key={item}>{item}</span>)}</div></article>)}</div></div><h2 className="services-title">What I can help build</h2><div className="services-grid">{services.map(([title, description, proof], index) => <article className={`service-panel service-${index + 1}`} key={title}><h3>{title}</h3><p>{description}</p><strong>Proof:</strong><small>{proof}</small></article>)}</div><div className="learning-journey"><div className="skills-technical-heading"><span className="section-kicker">(02) the journey</span><h2>Learning by<br /><em>building.</em></h2></div><div className="journey-list"><article><time>Start</time><div><h3>Hewett Polytechnic</h3><p>Started my Diploma in Information Technology and built the foundation for everything that followed.</p></div></article><article><time>Next</time><div><h3>Softflew Technologies</h3><p>Learned PHP technology, practical development workflows, and how software solves real business needs.</p></div></article><article><time>Then</time><div><h3>Started playing hackathons</h3><p>Turned ideas into working products under pressure, learned from teams, and found my competitive edge.</p></div></article><article><time>Now</time><div><h3>Learning more technologies</h3><p>Expanding across React, Next.js, APIs, design systems, animation, and product thinking.</p></div></article><article><time>Further</time><div><h3>Full Stack MERN · Infoseek Technology</h3><p>Taking a focused full-stack path across MongoDB, Express, React, and Node.js with Infoseek Technology.</p></div></article></div></div></section>
 }
 
 function ReadmePanel() {
