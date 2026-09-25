@@ -4,7 +4,7 @@ import './App.css'
 const projects = [
   { title: 'Nex-Zen', meta: 'Modern digital experience', description: 'A sharp, responsive product experience with bold visual direction.', tech: ['React', 'Next.js', 'UI/UX'], image: '/assets/project-shop.svg', preview: 'https://nex-zen.vercel.app/', url: 'https://nex-zen.vercel.app/', color: 'coral' },
   { title: 'Mahakaal Tours & Travels', meta: 'Travel and booking website', description: 'A polished travel platform for discovering Ayodhya and Mahakaal tours.', tech: ['React', 'Next.js', 'Tailwind CSS'], image: 'https://mahakaltourstravel.in/public/light-hero.webp', preview: 'https://mahakaltourstravel.in/', url: 'https://mahakaltourstravel.in/', color: 'blue' },
-  { title: 'Adhikar AI', meta: 'Interactive web project', description: 'An intelligent, expressive interface built around a clear digital journey.', tech: ['AI', 'JavaScript', 'Interface'], image: '/assets/project-dashboard.svg?v=2', url: 'https://project-z1e1d.vercel.app/', color: 'yellow' },
+  { title: 'Adhikar AI', meta: 'Interactive web project', description: 'An intelligent, expressive interface built around a clear digital journey.', tech: ['AI', 'JavaScript', 'Interface'], image: '/assets/project-dashboard.svg', url: 'https://project-z1e1d.vercel.app/', color: 'yellow' },
   { title: 'Vandna Computer', meta: 'Business website experience', description: 'A trustworthy web presence for a local technology and education brand.', tech: ['HTML', 'CSS', 'Responsive'], image: '/assets/project-ai.svg', preview: 'https://vandna-computer.vercel.app/', url: 'https://vandna-computer.vercel.app/', color: 'green' },
 ]
 
@@ -19,6 +19,12 @@ const certificates = [
   { title: 'Hack Devengers', meta: 'Hackathon certificate · Devesh Kumar', file: '/assets/Hack%20Devengers.pdf', accent: 'green' },
   { title: 'OOSC 4.0 Hackathon', meta: 'Hackathon certificate · Devesh Kumar', file: '/assets/OOSC%204.0%20Hackathon.pdf', accent: 'violet' },
   { title: 'Tagline Challenge', meta: 'Challenge certificate · Devesh Kumar', file: '/assets/Tagline%20Challenge.pdf', accent: 'orange' },
+]
+
+const achievements = [
+  { title: 'Mind Installers Hackathon 4.0', award: 'Certificate of Excellence', date: 'April 15-16, 2026', organization: 'IIMT Colleges, Greater Noida | National-level', detail: 'Outstanding leadership & execution — Team Syntrix', accent: 'orange' },
+  { title: 'Google Agentic Premier League', award: 'Participant', organization: 'Google Developer Groups', detail: 'Participated in an agentic AI challenge focused on practical problem-solving.', accent: 'violet' },
+  { title: 'Medha Group Of Foundation Workshops', award: 'Workshop Participant', organization: 'Medha Group Of Foundation', detail: 'Participated in foundation workshops focused on learning, collaboration, and growth.', accent: 'blue' },
 ]
 
 const skills = ['HTML & CSS', 'JavaScript', 'React', 'Next.js', 'Responsive UI', 'UI/UX', 'Figma', 'Bootstrap', 'APIs', 'Git & GitHub', 'Animation', 'Performance']
@@ -72,7 +78,7 @@ function ProjectsPage({ setCursor }) {
 }
 
 function ProjectCard({ project, setCursor }) {
-  return <article className={`project-card showcase-card ${project.color}`} onMouseEnter={() => setCursor((current) => ({ ...current, active: true }))} onMouseLeave={() => setCursor((current) => ({ ...current, active: false }))}><div className="project-image"><img src={project.image} alt={`${project.title} interface`} />{project.preview && <iframe src={project.preview} title={`${project.title} live preview`} loading="lazy" tabIndex="-1" />}<a className="project-open" href={project.url} target="_blank" rel="noreferrer"><span>CASE<br />STUDY</span><b>↗</b></a></div><div className="project-body"><div className="project-label"><div><h3>{project.title}</h3><p>{project.description}</p></div><span>↗</span></div><div className="project-tech">{project.tech.map((item) => <span key={item}>{item}</span>)}</div></div></article>
+  return <article className={`project-card showcase-card ${project.color}`} onMouseEnter={() => setCursor((current) => ({ ...current, active: true }))} onMouseLeave={() => setCursor((current) => ({ ...current, active: false }))}><div className="project-image"><img className="project-artwork" src={project.image} alt={`${project.title} interface`} onError={(event) => { event.currentTarget.src = '/assets/project-ai.svg' }} />{project.preview && <iframe src={project.preview} title={`${project.title} live preview`} loading="lazy" tabIndex="-1" />}<a className="project-open" href={project.url} target="_blank" rel="noreferrer"><span>CASE<br />STUDY</span><b>↗</b></a></div><div className="project-body"><div className="project-label"><div><h3>{project.title}</h3><p>{project.description}</p></div><span>↗</span></div><div className="project-tech">{project.tech.map((item) => <span key={item}>{item}</span>)}</div></div></article>
 }
 
 function AboutPage({ navigate }) {
@@ -94,7 +100,7 @@ function ReadmePanel() {
 }
 
 function AchievementsPage() {
-  return <section className="page section-wrap"><PageIntro number="03" title={<>achievements<br /><em>&amp; certificates.</em></>} copy="A growing archive of learning, recognition, and the work behind the work." /><div className="certificate-grid">{certificates.map((certificate) => <article className="certificate-card" key={certificate.title}><a className={`certificate-preview ${certificate.accent}`} href={certificate.file} target="_blank" rel="noreferrer"><span className="certificate-seal">✦</span><small>Devesh Kumar</small><strong>{certificate.title}</strong><em>view certificate ↗</em></a><h3>{certificate.title}</h3><p>{certificate.meta}</p></article>)}</div></section>
+  return <section className="page section-wrap"><PageIntro number="03" title={<>awards &amp;<br /><em>achievements.</em></>} copy="A verified track record of participation, recognition, and the work behind the work." /><div className="achievement-list">{achievements.map((achievement) => <article className={`achievement-card ${achievement.accent}`} key={achievement.title}><div className="achievement-card-top"><h2>{achievement.title}</h2>{achievement.date && <time>{achievement.date}</time>}</div><h3>🏅 {achievement.award}</h3><p><strong>Organization:</strong> {achievement.organization}</p><p><strong>Detail:</strong> {achievement.detail}</p></article>)}</div><div className="certificate-heading"><span className="section-kicker">(04) verified documents</span><h2>Certificates<br /><em>&amp; proof.</em></h2></div><div className="certificate-grid">{certificates.map((certificate) => <article className="certificate-card" key={certificate.title}><a className={`certificate-preview ${certificate.accent}`} href={certificate.file} target="_blank" rel="noreferrer"><span className="certificate-seal">✦</span><small>Devesh Kumar</small><strong>{certificate.title}</strong><em>view certificate ↗</em></a><h3>{certificate.title}</h3><p>{certificate.meta}</p></article>)}</div></section>
 }
 
 function ContactPage() {
