@@ -118,7 +118,27 @@ function ProjectCard({ project, setCursor }) {
 }
 
 function AboutPage({ navigate }) {
-  return <section className="page section-wrap"><PageIntro number="02" title={<>about<br /><em>Devesh.</em></>} copy="A product builder, creative technologist, and problem solver who turns practical ideas into polished digital systems." /><div className="about-layout"><div className="about-photo"><img src="/assets/Devesh.jpeg" alt="Devesh Kumar at Amity University" /></div><div className="about-copy"><p>I&apos;m Devesh Kumar. I work across interfaces, product thinking, systems, and the details that make digital experiences feel finished.</p><p>My work sits between design and engineering: useful ideas, clear structure, expressive visuals, and reliable execution.</p><button className="text-link" onClick={() => navigate('/contact')}>Work with me <span>↗</span></button></div></div><ReadmePanel /><div className="skills-cloud">{skills.map((skill) => <span key={skill}>{skill}</span>)}</div></section>
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setLoading(false), 1150)
+    return () => window.clearTimeout(timer)
+  }, [])
+
+  return <>
+    {loading && <AboutLoader />}
+    <section className="page section-wrap about-page"><PageIntro number="02" title={<>about<br /><em>Devesh.</em></>} copy="A product builder, creative technologist, and problem solver who turns practical ideas into polished digital systems." /><div className="about-layout"><div className="about-photo"><img src="/assets/Devesh.jpeg" alt="Devesh Kumar at Amity University" /></div><div className="about-copy"><p>I&apos;m Devesh Kumar. I work across interfaces, product thinking, systems, and the details that make digital experiences feel finished.</p><p>My work sits between design and engineering: useful ideas, clear structure, expressive visuals, and reliable execution.</p><button className="text-link" onClick={() => navigate('/contact')}>Work with me <span>↗</span></button></div></div><ReadmePanel /><div className="skills-cloud">{skills.map((skill) => <span key={skill}>{skill}</span>)}</div></section>
+  </>
+}
+
+function AboutLoader() {
+  return <div className="about-loader" role="status" aria-live="polite" aria-label="Loading About section">
+    <div className="about-loader-shape" aria-hidden="true" />
+    <span className="about-loader-index">DE V E S H&nbsp; / &nbsp;ABOUT</span>
+    <div className="about-loader-portrait"><img src="/assets/DevPp.jpeg" alt="" /></div>
+    <div className="about-loader-title"><span>MAKING DIGITAL THINGS THAT MATTER</span><h2>building products<br /><em>that matter.</em></h2></div>
+    <div className="about-loader-progress"><i /><span>OPENING ABOUT</span></div>
+  </div>
 }
 
 function SkillsPage() {
