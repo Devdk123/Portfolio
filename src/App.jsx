@@ -30,11 +30,13 @@ const achievements = [
 const skills = ['HTML & CSS', 'JavaScript', 'React', 'Next.js', 'Responsive UI', 'UI/UX', 'Figma', 'Bootstrap', 'APIs', 'Git & GitHub', 'Animation', 'Performance']
 
 const skillGroups = [
-  ['Programming', ['JavaScript', 'Python', 'PHP', 'Java', 'C', 'SQL']],
-  ['Web Development', ['HTML5', 'CSS3', 'React', 'Next.js', 'Node.js', 'REST APIs']],
+  ['Programming', ['Python', 'SQL', 'Java', 'C', 'JavaScript', 'TypeScript', 'Dart', 'PHP', 'MATLAB']],
+  ['Web Development', ['HTML5', 'CSS3', 'GraphQL', 'React', 'Next.js', 'Node.js', 'Express.js', 'REST APIs']],
+  ['Data & ML', ['Data Analysis', 'Data Classification']],
+  ['AI / GenAI', ['LLMs', 'Generative AI', 'IBM Granite', 'Agentic AI']],
   ['Design & Product', ['Figma', 'UI/UX', 'Responsive Design', 'Wireframing', 'Design Systems']],
   ['Tools & DevOps', ['Git', 'GitHub', 'VS Code', 'Postman', 'Vercel', 'APIs']],
-  ['Exploring', ['AI Products', 'Agentic AI', 'Animation', 'Performance', 'Full Stack MERN']],
+  ['Exploring', ['AI Products', 'Animation', 'Performance', 'Full Stack MERN']],
 ]
 
 const journey = [
