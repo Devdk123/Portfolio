@@ -97,7 +97,7 @@ function App() {
     <main>
       {intro && <div className="intro-screen"><div className="intro-name"><span>D</span><span>E</span><span>V</span></div><p>Devesh Kumar / portfolio</p></div>}
       <Header navigate={navigate} />
-      {route === '/projects' ? <ProjectsPage setCursor={setCursor} /> : route === '/achievements' ? <AchievementsPage /> : route === '/about' ? <AboutPage navigate={navigate} /> : route === '/skills' ? <SkillsPage /> : route === '/contact' ? <ContactPage /> : <HomePage navigate={navigate} setCursor={setCursor} />}
+        {route === '/projects' ? <ProjectsPage setCursor={setCursor} /> : route === '/achievements' ? <AchievementsPage /> : route === '/about' ? <AboutPage navigate={navigate} /> : route === '/skills' ? <SkillsPage /> : route === '/contact' ? <ContactPage /> : <HomePage navigate={navigate} setCursor={setCursor} />}
       <Footer navigate={navigate} />
       <div className={`cursor-orbit ${cursor.visible && cursor.active ? 'cursor-visible cursor-project' : ''}`} style={{ left: cursor.x, top: cursor.y }} aria-hidden="true"><span /></div>
       <div className="cursor-label" style={{ left: cursor.x, top: cursor.y, opacity: cursor.active ? 1 : 0 }}>open project ↗</div>
@@ -182,7 +182,45 @@ function SkillsPage() {
     ['AI & Product Exploration', 'Turning ambitious product ideas into expressive prototypes, useful interfaces, and practical digital systems.', 'Adhikar AI, product experiments'],
     ['Technical Consulting', 'Choosing the right structure, tools, and interaction model to move an idea from rough concept to useful product.', 'Architecture, performance, delivery'],
   ]
-  return <section className="page section-wrap services-page"><PageIntro number="05" title={<>technical<br /><em>skills.</em></>} copy="The tools, systems, and habits I use to turn practical ideas into useful digital products." /><div className="skills-technical"><div className="skills-technical-heading"><span className="section-kicker">(01) technical arsenal</span><h2>Tools for<br /><em>building.</em></h2></div><div className="skills-groups">{skillGroups.map(([title, items], index) => <ScrollReveal as="article" key={title} className="skill-category" delay={index * 70}><h3>{title}</h3><div>{items.map((item) => <span key={item}>{item}</span>)}</div></ScrollReveal>)}</div></div><h2 className="services-title">What I can help build</h2><div className="services-grid">{services.map(([title, description, proof], index) => <article className={`service-panel service-${index + 1}`} key={title}><h3>{title}</h3><p>{description}</p><strong>Proof:</strong><small>{proof}</small></article>)}</div><div className="learning-journey"><div className="journey-heading"><span className="section-kicker">(02) education &amp; experience</span><h2>Learning by<br /><em>building.</em></h2></div><div className="journey-list">{journey.map((item, index) => <JourneyItem key={item[1]} item={item} index={index} />)}</div></div></section>
+  return (
+    <section className="page section-wrap services-page">
+      <PageIntro number="05" title={<>my<br /><em>toolkit.</em></>} copy="A practical mix of languages, development tools, and AI systems that help me turn ideas into working products." />
+      <div className="skills-technical">
+        <div className="skills-technical-heading">
+          <span className="section-kicker">(01) what I build with</span>
+          <h2>How I<br /><em>build.</em></h2>
+        </div>
+        <div className="skills-groups">
+          {skillGroups.map(([title, items], index) => (
+            <ScrollReveal as="article" key={title} className="skill-category" delay={index * 70}>
+              <h3>{title}</h3>
+              <div>{items.map((item) => <span key={item}>{item}</span>)}</div>
+            </ScrollReveal>
+          ))}
+        </div>
+      </div>
+      <h2 className="services-title">What I can help build</h2>
+      <div className="services-grid">
+        {services.map(([title, description, proof], index) => (
+          <article className={`service-panel service-${index + 1}`} key={title}>
+            <h3>{title}</h3>
+            <p>{description}</p>
+            <strong>Proof:</strong>
+            <small>{proof}</small>
+          </article>
+        ))}
+      </div>
+      <div className="learning-journey">
+        <div className="journey-heading">
+          <span className="section-kicker">(02) education &amp; experience</span>
+          <h2>Learning by<br /><em>building.</em></h2>
+        </div>
+        <div className="journey-list">
+          {journey.map((item, index) => <JourneyItem key={item[1]} item={item} index={index} />)}
+        </div>
+      </div>
+    </section>
+  )
 }
 
 function JourneyItem({ item, index }) {
