@@ -47,6 +47,35 @@ const journey = [
   ['In progress', 'Full Stack MERN', 'Infoseek Technology', 'Deepening MongoDB, Express, React, and Node.js into a complete full-stack practice.'],
 ]
 
+function useScrollReveal() {
+  const elementRef = useRef(null)
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const element = elementRef.current
+    if (!element) return
+    if (!('IntersectionObserver' in window)) {
+      setVisible(true)
+      return
+    }
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setVisible(true)
+        observer.disconnect()
+      }
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' })
+    observer.observe(element)
+    return () => observer.disconnect()
+  }, [])
+
+  return { elementRef, visible }
+}
+
+function ScrollReveal({ as: Element = 'div', className = '', delay = 0, children }) {
+  const { elementRef, visible } = useScrollReveal()
+  return <Element ref={elementRef} className={`scroll-reveal ${visible ? 'scroll-revealed' : ''} ${className}`.trim()} style={{ '--reveal-delay': `${delay}ms` }}>{children}</Element>
+}
+
 function App() {
   const [route, setRoute] = useState(window.location.pathname || '/')
   const [intro, setIntro] = useState(true)
@@ -103,8 +132,8 @@ function HomePage({ navigate, setCursor }) {
       </div>
       <div className="hero-bottom"><span className="hero-scroll"><i /> Scroll to explore</span><div className="hero-capabilities"><span>PRODUCT THINKING</span><i /> <span>INTERFACES</span><i /> <span>FRONT-END</span><i /> <span>GOOD DETAILS</span></div><span className="hero-location">26°50&apos; N&nbsp; 80°56&apos; E</span></div>
     </section>
-    <section className="horizontal-statement point-of-view"><div className="point-heading"><span className="section-kicker">(01) the point of view</span><span>BUILT FOR PEOPLE, NOT JUST SCREENS</span></div><div className="statement-inner point-copy"><p>I build <mark>real-world products</mark>, not just projects.<em>From the first spark to the system underneath, I care about every detail people can feel.</em></p><span className="point-arrow">↘</span></div><div className="statement-footer"><span>Devesh Kumar / product builder</span><span>✳</span></div></section>
-    <section className="home-work section-wrap"><div className="section-kicker">(02) selected work</div><div className="showcase-heading"><h2>Real projects<br /><em>made with care.</em></h2><button className="text-link" onClick={() => navigate('/projects')}>View all projects <span>↗</span></button></div><div className="project-grid">{projects.slice(0, 3).map((project) => <ProjectCard key={project.title} project={project} setCursor={setCursor} />)}</div></section>
+    <ScrollReveal as="section" className="horizontal-statement point-of-view" delay={60}><div className="point-heading"><span className="section-kicker">(01) the point of view</span><span>BUILT FOR PEOPLE, NOT JUST SCREENS</span></div><div className="statement-inner point-copy"><p>I build <mark>real-world products</mark>, not just projects.<em>From the first spark to the system underneath, I care about every detail people can feel.</em></p><span className="point-arrow">↘</span></div><div className="statement-footer"><span>Devesh Kumar / product builder</span><span>✳</span></div></ScrollReveal>
+    <ScrollReveal as="section" className="home-work section-wrap" delay={100}><div className="section-kicker">(02) selected work</div><div className="showcase-heading"><h2>Real projects<br /><em>made with care.</em></h2><button className="text-link" onClick={() => navigate('/projects')}>View all projects <span>↗</span></button></div><div className="project-grid">{projects.slice(0, 3).map((project) => <ProjectCard key={project.title} project={project} setCursor={setCursor} />)}</div></ScrollReveal>
     <section className="home-cta"><p>Have an idea in mind?</p><button onClick={() => navigate('/contact')}>Let&apos;s build something <span>↗</span></button></section>
   </>
 }
@@ -127,7 +156,7 @@ function AboutPage({ navigate }) {
 
   return <>
     {loading && <AboutLoader />}
-    <section className="page section-wrap about-page"><PageIntro number="02" title={<>about<br /><em>Devesh.</em></>} copy="A product builder, creative technologist, and problem solver who turns practical ideas into polished digital systems." /><div className="about-layout"><div className="about-photo"><img src="/assets/Devesh.jpeg" alt="Devesh Kumar at Amity University" /></div><div className="about-copy"><p>I&apos;m Devesh Kumar. I work across interfaces, product thinking, systems, and the details that make digital experiences feel finished.</p><p>My work sits between design and engineering: useful ideas, clear structure, expressive visuals, and reliable execution.</p><button className="text-link" onClick={() => navigate('/contact')}>Work with me <span>↗</span></button></div></div><ReadmePanel /><div className="skills-cloud">{skills.map((skill) => <span key={skill}>{skill}</span>)}</div></section>
+    <section className="page section-wrap about-page"><PageIntro number="02" title={<>about<br /><em>Devesh.</em></>} copy="A product builder, creative technologist, and problem solver who turns practical ideas into polished digital systems." /><ScrollReveal as="div" className="about-layout" delay={80}><div className="about-photo"><img src="/assets/Devesh.jpeg" alt="Devesh Kumar at Amity University" /></div><div className="about-copy"><p>I&apos;m Devesh Kumar. I work across interfaces, product thinking, systems, and the details that make digital experiences feel finished.</p><p>My work sits between design and engineering: useful ideas, clear structure, expressive visuals, and reliable execution.</p><button className="text-link" onClick={() => navigate('/contact')}>Work with me <span>↗</span></button></div></ScrollReveal><ReadmePanel /><div className="skills-cloud">{skills.map((skill) => <span key={skill}>{skill}</span>)}</div></section>
   </>
 }
 
@@ -148,7 +177,7 @@ function SkillsPage() {
     ['AI & Product Exploration', 'Turning ambitious product ideas into expressive prototypes, useful interfaces, and practical digital systems.', 'Adhikar AI, product experiments'],
     ['Technical Consulting', 'Choosing the right structure, tools, and interaction model to move an idea from rough concept to useful product.', 'Architecture, performance, delivery'],
   ]
-  return <section className="page section-wrap services-page"><PageIntro number="05" title={<>technical<br /><em>skills.</em></>} copy="The tools, systems, and habits I use to turn practical ideas into useful digital products." /><div className="skills-technical"><div className="skills-technical-heading"><span className="section-kicker">(01) technical arsenal</span><h2>Tools for<br /><em>building.</em></h2></div><div className="skills-groups">{skillGroups.map(([title, items]) => <article key={title}><h3>{title}</h3><div>{items.map((item) => <span key={item}>{item}</span>)}</div></article>)}</div></div><h2 className="services-title">What I can help build</h2><div className="services-grid">{services.map(([title, description, proof], index) => <article className={`service-panel service-${index + 1}`} key={title}><h3>{title}</h3><p>{description}</p><strong>Proof:</strong><small>{proof}</small></article>)}</div><div className="learning-journey"><div className="journey-heading"><span className="section-kicker">(02) education &amp; experience</span><h2>Learning by<br /><em>building.</em></h2></div><div className="journey-list">{journey.map((item, index) => <JourneyItem key={item[1]} item={item} index={index} />)}</div></div></section>
+  return <section className="page section-wrap services-page"><PageIntro number="05" title={<>technical<br /><em>skills.</em></>} copy="The tools, systems, and habits I use to turn practical ideas into useful digital products." /><div className="skills-technical"><div className="skills-technical-heading"><span className="section-kicker">(01) technical arsenal</span><h2>Tools for<br /><em>building.</em></h2></div><div className="skills-groups">{skillGroups.map(([title, items], index) => <ScrollReveal as="article" key={title} className="skill-category" delay={index * 70}><h3>{title}</h3><div>{items.map((item) => <span key={item}>{item}</span>)}</div></ScrollReveal>)}</div></div><h2 className="services-title">What I can help build</h2><div className="services-grid">{services.map(([title, description, proof], index) => <article className={`service-panel service-${index + 1}`} key={title}><h3>{title}</h3><p>{description}</p><strong>Proof:</strong><small>{proof}</small></article>)}</div><div className="learning-journey"><div className="journey-heading"><span className="section-kicker">(02) education &amp; experience</span><h2>Learning by<br /><em>building.</em></h2></div><div className="journey-list">{journey.map((item, index) => <JourneyItem key={item[1]} item={item} index={index} />)}</div></div></section>
 }
 
 function JourneyItem({ item, index }) {

@@ -41,6 +41,9 @@ main .about-loader-title em { color: #d3c9ff; font: italic clamp(56px, 9vw, 132p
 main .about-loader-progress { position: absolute; bottom: 28px; left: clamp(24px, 6vw, 90px); display: flex; align-items: center; gap: 14px; color: #dad8d3; font-size: 9px; font-weight: 700; letter-spacing: .14em; }
 main .about-loader-progress i { position: relative; display: block; width: 110px; height: 2px; overflow: hidden; background: #ffffff40; }
 main .about-loader-progress i::after { content: ''; position: absolute; inset: 0; background: var(--yellow); transform: scaleX(0); transform-origin: left; animation: aboutProgress .9s ease-out both; }
+main .scroll-reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease var(--reveal-delay, 0ms), transform .7s cubic-bezier(.2,.8,.2,1) var(--reveal-delay, 0ms); }
+main .scroll-reveal.scroll-revealed { opacity: 1; transform: translateY(0); }
+main .skills-groups article.scroll-revealed:hover { transform: translateY(-5px); }
 main .footer-grid { grid-template-columns: minmax(180px, .82fr) minmax(140px, .85fr) minmax(130px, .7fr) minmax(240px, 1.55fr); column-gap: clamp(18px, 2.3vw, 32px); row-gap: 38px; }
 main .footer-intro h2 { font-size: clamp(46px, 5.2vw, 74px); }
 @media (max-width: 1000px) {
@@ -168,6 +171,7 @@ main .hero-bottom { align-items: center; padding-top: 14px; border-top: 1px soli
 	.hero-portrait, .portrait-seal, .hero-scroll i, .point-arrow { animation: none; }
 	.portrait-frame img, .hero-primary, .hero-secondary, .skills-groups article, .skills-groups article div span { transition: none; }
 	.about-loader-shape, .about-loader-index, .about-loader-portrait, .about-loader-title, .about-loader-progress i::after { animation: none; }
+	main .scroll-reveal, main .scroll-reveal.scroll-revealed { opacity: 1; transform: none; transition: none; }
 }
 :root { --paper: #f4f1e9; --ink: #171717; --muted: #77756d; --line: #d4d0c5; --red: #ef5a3c; --yellow: #f2c83d; --blue: #9aa4b5; }
 main { min-height: 100vh; background: var(--paper); color: var(--ink); overflow: hidden; } button, a { font: inherit; color: inherit; } button { border: 0; background: none; cursor: pointer; } a { text-decoration: none; }
