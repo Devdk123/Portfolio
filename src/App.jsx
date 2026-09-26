@@ -78,7 +78,7 @@ function ScrollReveal({ as: Element = 'div', className = '', delay = 0, children
 
 function App() {
   const [route, setRoute] = useState(window.location.pathname || '/')
-  const [intro, setIntro] = useState(true)
+  const [intro, setIntro] = useState(() => window.location.pathname !== '/about')
   const [cursor, setCursor] = useState({ x: 0, y: 0, active: false })
 
   useEffect(() => {
