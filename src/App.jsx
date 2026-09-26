@@ -49,15 +49,12 @@ const journey = [
 
 function useScrollReveal() {
   const elementRef = useRef(null)
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(() => !('IntersectionObserver' in window))
 
   useEffect(() => {
     const element = elementRef.current
     if (!element) return
-    if (!('IntersectionObserver' in window)) {
-      setVisible(true)
-      return
-    }
+    if (!('IntersectionObserver' in window)) return
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         setVisible(true)
