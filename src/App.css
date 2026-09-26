@@ -41,6 +41,12 @@ main .about-loader-title em { color: #d3c9ff; font: italic clamp(56px, 9vw, 132p
 main .about-loader-progress { position: absolute; bottom: 28px; left: clamp(24px, 6vw, 90px); display: flex; align-items: center; gap: 14px; color: #dad8d3; font-size: 9px; font-weight: 700; letter-spacing: .14em; }
 main .about-loader-progress i { position: relative; display: block; width: 110px; height: 2px; overflow: hidden; background: #ffffff40; }
 main .about-loader-progress i::after { content: ''; position: absolute; inset: 0; background: var(--yellow); transform: scaleX(0); transform-origin: left; animation: aboutProgress .9s ease-out both; }
+main .footer-grid { grid-template-columns: minmax(180px, .82fr) minmax(140px, .85fr) minmax(130px, .7fr) minmax(240px, 1.55fr); column-gap: clamp(18px, 2.3vw, 32px); row-gap: 38px; }
+main .footer-intro h2 { font-size: clamp(46px, 5.2vw, 74px); }
+@media (max-width: 1000px) {
+	main .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 24px; row-gap: 36px; }
+	main .footer-intro, main .contact-column { grid-column: 1 / -1; }
+}
 @keyframes aboutLoaderOut { to { opacity: 0; visibility: hidden; } }
 @keyframes aboutShapeIn { from { transform: translateX(-15%) skewX(-5deg); } to { transform: translateX(0) skewX(0); } }
 @keyframes aboutPortraitIn { from { opacity: 0; transform: translateY(18px) scale(.9); } to { opacity: 1; transform: translateY(0) scale(1); } }
