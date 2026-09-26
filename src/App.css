@@ -26,8 +26,8 @@ main .home-tech .skills-groups { margin: 0; }
 	main .home-tech-copy { margin-top: 24px; }
 }
 main .skills-technical { display: block; margin: 60px 0 130px; }
-main .skills-technical-heading { display: flex; justify-content: space-between; align-items: end; gap: 25px; margin-bottom: 46px; }
-main .skills-technical-heading h2 { margin: 0; font-size: clamp(58px, 8vw, 104px); line-height: .82; }
+main .skills-technical-heading { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 0; margin-bottom: 46px; text-align: center; }
+main .skills-technical-heading h2 { margin: 24px 0 0; font-size: clamp(58px, 8vw, 104px); line-height: .82; }
 main .skills-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; border: 0; }
 main .skills-groups article { min-height: 245px; padding: 28px 30px; border: 1px solid var(--ink); border-radius: 16px; background: #fffdfa; box-shadow: 8px 9px 0 var(--ink); transition: transform .3s ease, box-shadow .3s ease; }
 main .skills-groups article:hover { transform: translateY(-5px); box-shadow: 11px 14px 0 var(--ink); }
@@ -42,6 +42,34 @@ main .skills-groups article div { display: flex; flex-wrap: wrap; gap: 10px; }
 main .skills-groups article div span { padding: 9px 14px; border: 1px solid #2d2b2a; border-radius: 99px; background: #f3f0eb; color: var(--ink); font-size: 13px; font-weight: 600; transition: background .2s, color .2s, transform .2s; }
 main .skills-groups article div span:hover { transform: translateY(-3px); background: var(--ink); color: #fff; }
 main .skills-groups article:nth-child(7) { grid-column: 1 / -1; min-height: auto; }
+main .certificate-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; gap: 28px 22px; }
+main .certificate-card { display: flex; min-width: 0; flex-direction: column; }
+main .certificate-card a.certificate-preview { min-height: 270px; padding: 20px; display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: auto 1fr auto; align-items: start; gap: 14px; }
+main .certificate-preview small { grid-column: 1; grid-row: 1; align-self: center; font-size: 9px; font-weight: 700; letter-spacing: .12em; }
+main .certificate-preview .certificate-seal { grid-column: 2; grid-row: 1; align-self: start; justify-self: end; font-size: 25px; line-height: 1; }
+main .certificate-preview strong { grid-column: 1 / -1; grid-row: 2; align-self: center; max-width: none; overflow-wrap: anywhere; font-size: clamp(26px, 2.7vw, 38px); line-height: .98; letter-spacing: -.055em; }
+main .certificate-preview em { grid-column: 1 / -1; grid-row: 3; align-self: end; justify-self: start; padding: 9px 12px; border-radius: 99px; background: var(--ink); color: var(--paper); font-size: 10px; font-style: normal; font-weight: 700; letter-spacing: .04em; }
+main .certificate-card > h3 { margin: 15px 2px 5px; font-size: 15px; line-height: 1.2; }
+main .certificate-card > p { margin: 0 2px; color: var(--muted); font-size: 11px; line-height: 1.4; }
+main .header-socials { display: flex; flex: 0 0 auto; align-items: center; gap: 7px; margin-left: 4px; }
+main .header-socials .linkedin-wrap { margin-left: 0; }
+main .header-social { width: 32px; height: 32px; margin: 0; display: grid; place-items: center; border: 0; border-radius: 8px; color: #fff; font-size: 15px; transition: transform .22s ease, box-shadow .22s ease, filter .22s ease; }
+main .header-social:hover { transform: translateY(-3px); box-shadow: 0 4px 0 #17171730; filter: brightness(1.08); }
+main .header-social.linkedin-button { width: 32px; height: 32px; background: #0a66c2; color: #fff; font-size: 15px; }
+main .instagram-header { background: linear-gradient(135deg, #f9ce34, #ee2a7b 55%, #6228d7); }
+main .x-header { background: #171717; }
+main .github-header { background: #31343a; }
+@media (max-width: 950px) {
+	main .header-socials { gap: 5px; }
+	main .header-social, main .header-social.linkedin-button { width: 30px; height: 30px; }
+}
+@media (max-width: 700px) {
+	main .certificate-grid { grid-template-columns: 1fr; gap: 26px; }
+	main .certificate-card a.certificate-preview { min-height: 230px; padding: 18px; }
+	main .certificate-preview strong { font-size: clamp(30px, 8vw, 40px); }
+	main .header-socials { gap: 5px; }
+	main .header-social, main .header-social.linkedin-button { width: 29px; height: 29px; border-radius: 7px; font-size: 13px; }
+}
 main .about-loader { position: fixed; inset: 0; z-index: 25; overflow: hidden; isolation: isolate; background: #101013; color: #f6f4ed; animation: aboutLoaderOut .3s .84s ease-in forwards; }
 main .about-loader-shape { position: absolute; z-index: -1; inset: -10% auto -10% -12%; width: 73%; background: #829bff; clip-path: polygon(0 0, 100% 0, 44% 100%, 0 100%); animation: aboutShapeIn .85s cubic-bezier(.2,.8,.2,1) both; }
 main .about-loader-index { position: absolute; top: 36px; left: clamp(24px, 6vw, 90px); font-size: 10px; font-weight: 700; letter-spacing: .16em; animation: aboutTitleIn .6s .08s both; }
