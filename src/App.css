@@ -1,4 +1,14 @@
 /* Home hero refresh */
+main .point-of-view { position: relative; min-height: 620px; display: flex; flex-direction: column; justify-content: space-between; padding: 38px clamp(24px, 7vw, 120px) 28px; overflow: hidden; }
+main .point-heading { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+main .point-heading > span:last-child { color: #96938b; font-size: 9px; font-weight: 700; letter-spacing: .15em; }
+main .point-copy { max-width: 1160px; margin: 82px auto 94px; }
+main .point-copy p { font-size: clamp(48px, 7.1vw, 106px); line-height: .94; letter-spacing: -.07em; }
+main .point-copy mark { padding: .015em .08em; color: var(--ink); background-color: transparent; background-image: linear-gradient(var(--yellow), var(--yellow)); background-repeat: no-repeat; background-size: 0% 92%; box-decoration-break: clone; -webkit-box-decoration-break: clone; animation: markerSweep .9s .45s ease-out forwards; }
+main .point-copy em { display: block; max-width: 760px; margin-top: 34px; color: #d3d0c7; font: italic clamp(24px, 3vw, 38px)/1.18 Georgia, 'Times New Roman', serif; letter-spacing: 0; }
+.point-arrow { position: absolute; right: 5%; bottom: 84px; color: var(--yellow); font: 80px Georgia, serif; transform: rotate(-14deg); animation: arrowDrift 3.4s ease-in-out infinite; }
+@keyframes markerSweep { to { background-size: 100% 92%; } }
+@keyframes arrowDrift { 0%, 100% { translate: 0 0; rotate: -14deg; } 50% { translate: 0 -9px; rotate: -4deg; } }
 .hero { min-height: min(820px, calc(100svh - 84px)); padding-top: 24px; padding-bottom: 24px; }
 main .hero-top { align-items: center; font-size: 10px; letter-spacing: .13em; }
 main .hero-top span:last-child { display: flex; align-items: center; gap: 8px; }
@@ -63,6 +73,12 @@ main .hero-bottom { align-items: center; padding-top: 14px; border-top: 1px soli
 	.hero-capabilities { gap: 7px; font-size: 8px; }
 }
 @media (max-width: 700px) {
+	main .point-of-view { min-height: 530px; padding: 28px 22px 22px; }
+	main .point-heading > span:last-child { max-width: 110px; text-align: right; font-size: 7px; }
+	main .point-copy { margin: 62px 0 84px; }
+	main .point-copy p { font-size: clamp(43px, 11.2vw, 64px); }
+	main .point-copy em { max-width: 310px; margin-top: 27px; font-size: 23px; }
+	.point-arrow { right: 8%; bottom: 57px; font-size: 62px; }
 	main .hero { min-height: auto; padding: 22px 22px 24px; gap: 28px; }
 	main .hero-top { font-size: 9px; }
 	main .hero-top span:last-child { display: none; }
