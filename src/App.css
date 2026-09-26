@@ -12,6 +12,19 @@ main .home-work .showcase-card { box-shadow: 7px 8px 0 var(--ink); }
 main .home-work .showcase-card:hover { box-shadow: 10px 13px 0 var(--ink); }
 main .home-work .project-body { padding-right: 20px; padding-left: 20px; }
 main .home-work .project-label h3 { font-size: clamp(19px, 1.8vw, 25px); }
+main .home-tech { border-top: 1px solid var(--line); padding-top: 88px; padding-bottom: 105px; }
+main .home-tech-heading { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, .55fr); align-items: end; gap: 50px; margin-bottom: 48px; }
+main .home-tech-heading h2 { margin: 28px 0 0; font-size: clamp(56px, 7.5vw, 100px); line-height: .83; letter-spacing: -.085em; }
+main .home-tech-heading h2 em { color: var(--red); font: italic clamp(60px, 7.7vw, 104px)/.86 Georgia, 'Times New Roman', serif; letter-spacing: -.08em; }
+main .home-tech-copy p { max-width: 390px; margin: 0 0 20px; color: var(--muted); font-size: 15px; line-height: 1.55; }
+main .home-tech .skills-groups { margin: 0; }
+@media (max-width: 700px) {
+	main .home-tech { padding-top: 66px; padding-bottom: 78px; }
+	main .home-tech-heading { display: block; margin-bottom: 34px; }
+	main .home-tech-heading h2 { margin-top: 22px; font-size: clamp(56px, 14vw, 78px); }
+	main .home-tech-heading h2 em { font-size: clamp(58px, 14vw, 80px); }
+	main .home-tech-copy { margin-top: 24px; }
+}
 main .skills-technical { display: block; margin: 60px 0 130px; }
 main .skills-technical-heading { display: flex; justify-content: space-between; align-items: end; gap: 25px; margin-bottom: 46px; }
 main .skills-technical-heading h2 { margin: 0; font-size: clamp(58px, 8vw, 104px); line-height: .82; }

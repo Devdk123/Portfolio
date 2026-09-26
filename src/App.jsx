@@ -134,8 +134,16 @@ function HomePage({ navigate, setCursor }) {
     </section>
     <ScrollReveal as="section" className="horizontal-statement point-of-view" delay={60}><div className="point-heading"><span className="section-kicker">(01) the point of view</span><span>BUILT FOR PEOPLE, NOT JUST SCREENS</span></div><div className="statement-inner point-copy"><p>I build <mark>real-world products</mark>, not just projects.<em>From the first spark to the system underneath, I care about every detail people can feel.</em></p><span className="point-arrow">↘</span></div><div className="statement-footer"><span>Devesh Kumar / product builder</span><span>✳</span></div></ScrollReveal>
     <ScrollReveal as="section" className="home-work section-wrap" delay={100}><div className="section-kicker">(02) selected work</div><div className="showcase-heading"><h2>Real projects<br /><em>made with care.</em></h2><button className="text-link" onClick={() => navigate('/projects')}>View all projects <span>↗</span></button></div><div className="project-grid">{projects.slice(0, 3).map((project) => <ProjectCard key={project.title} project={project} setCursor={setCursor} />)}</div></ScrollReveal>
+    <HomeTechShowcase navigate={navigate} />
     <section className="home-cta"><p>Have an idea in mind?</p><button onClick={() => navigate('/contact')}>Let&apos;s build something <span>↗</span></button></section>
   </>
+}
+
+function HomeTechShowcase({ navigate }) {
+  return <section className="home-tech section-wrap">
+    <div className="home-tech-heading"><div><span className="section-kicker">(03) technology / tools of the trade</span><h2>A curious mix<br /><em>of tools.</em></h2></div><div className="home-tech-copy"><p>From core code to data and AI experiments, these are some of the tools I use to make useful things work.</p><button className="text-link" onClick={() => navigate('/skills')}>Explore all skills <span>↗</span></button></div></div>
+    <div className="skills-groups home-tech-grid">{skillGroups.slice(0, 4).map(([title, items], index) => <ScrollReveal as="article" key={title} className="skill-category" delay={index * 80}><h3>{title}</h3><div>{items.map((item) => <span key={item}>{item}</span>)}</div></ScrollReveal>)}</div>
+  </section>
 }
 
 function ProjectsPage({ setCursor }) {
