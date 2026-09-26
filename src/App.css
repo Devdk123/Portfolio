@@ -12,8 +12,34 @@ main .home-work .showcase-card { box-shadow: 7px 8px 0 var(--ink); }
 main .home-work .showcase-card:hover { box-shadow: 10px 13px 0 var(--ink); }
 main .home-work .project-body { padding-right: 20px; padding-left: 20px; }
 main .home-work .project-label h3 { font-size: clamp(19px, 1.8vw, 25px); }
+main .skills-technical { display: block; margin: 60px 0 130px; }
+main .skills-technical-heading { display: flex; justify-content: space-between; align-items: end; gap: 25px; margin-bottom: 46px; }
+main .skills-technical-heading h2 { margin: 0; font-size: clamp(58px, 8vw, 104px); line-height: .82; }
+main .skills-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; border: 0; }
+main .skills-groups article { min-height: 245px; padding: 28px 30px; border: 1px solid var(--ink); border-radius: 16px; background: #fffdfa; box-shadow: 8px 9px 0 var(--ink); transition: transform .3s ease, box-shadow .3s ease; }
+main .skills-groups article:hover { transform: translateY(-5px); box-shadow: 11px 14px 0 var(--ink); }
+main .skills-groups article h3 { display: inline-flex; align-items: center; min-height: 48px; margin: 0 0 26px; padding: 10px 19px; border: 1px solid var(--ink); border-radius: 99px; background: #ddf3a8; color: var(--ink); box-shadow: 4px 4px 0 var(--ink); font: 700 17px/1.1 'Trebuchet MS', sans-serif; }
+main .skills-groups article:nth-child(2) h3 { background: #91aafa; }
+main .skills-groups article:nth-child(3) h3 { background: var(--red); color: #fff; }
+main .skills-groups article:nth-child(4) h3 { background: #e6b5ef; }
+main .skills-groups article:nth-child(5) h3 { background: #9dd9cb; }
+main .skills-groups article:nth-child(6) h3 { background: #f1d271; }
+main .skills-groups article:nth-child(7) h3 { background: #b8a2ec; }
+main .skills-groups article div { display: flex; flex-wrap: wrap; gap: 10px; }
+main .skills-groups article div span { padding: 9px 14px; border: 1px solid #2d2b2a; border-radius: 99px; background: #f3f0eb; color: var(--ink); font-size: 13px; font-weight: 600; transition: background .2s, color .2s, transform .2s; }
+main .skills-groups article div span:hover { transform: translateY(-3px); background: var(--ink); color: #fff; }
+main .skills-groups article:nth-child(7) { grid-column: 1 / -1; min-height: auto; }
 @media (max-width: 1000px) {
 	main .home-work .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 700px) {
+	main .skills-technical { margin: 55px 0 90px; }
+	main .skills-technical-heading { display: block; margin-bottom: 30px; }
+	main .skills-technical-heading h2 { margin-top: 22px; font-size: clamp(58px, 15vw, 82px); }
+	main .skills-groups { grid-template-columns: 1fr; gap: 18px; }
+	main .skills-groups article { min-height: 0; padding: 22px; }
+	main .skills-groups article h3 { margin-bottom: 22px; }
+	main .skills-groups article:nth-child(7) { grid-column: auto; }
 }
 @keyframes markerSweep { to { background-size: 100% 92%; } }
 @keyframes arrowDrift { 0%, 100% { translate: 0 0; rotate: -14deg; } 50% { translate: 0 -9px; rotate: -4deg; } }
