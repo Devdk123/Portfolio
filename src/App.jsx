@@ -52,7 +52,7 @@ function App() {
 
   useEffect(() => {
     const onPopState = () => setRoute(window.location.pathname || '/')
-    const move = (event) => setCursor((current) => ({ ...current, x: event.clientX, y: event.clientY }))
+    const move = (event) => setCursor((current) => ({ ...current, x: event.clientX, y: event.clientY, visible: true }))
     window.addEventListener('popstate', onPopState)
     window.addEventListener('pointermove', move)
     const timer = window.setTimeout(() => setIntro(false), 1550)
@@ -71,6 +71,7 @@ function App() {
       <Header navigate={navigate} />
       {route === '/projects' ? <ProjectsPage setCursor={setCursor} /> : route === '/achievements' ? <AchievementsPage /> : route === '/about' ? <AboutPage navigate={navigate} /> : route === '/skills' ? <SkillsPage /> : route === '/contact' ? <ContactPage /> : <HomePage navigate={navigate} setCursor={setCursor} />}
       <Footer navigate={navigate} />
+      <div className={`cursor-orbit ${cursor.visible ? 'cursor-visible' : ''} ${cursor.active ? 'cursor-project' : ''}`} style={{ left: cursor.x, top: cursor.y }} aria-hidden="true"><span /></div>
       <div className="cursor-label" style={{ left: cursor.x, top: cursor.y, opacity: cursor.active ? 1 : 0 }}>open project ↗</div>
     </main>
   )
@@ -82,7 +83,24 @@ function Header({ navigate }) {
 
 function HomePage({ navigate, setCursor }) {
   return <>
-    <section className="hero" id="top"><div className="hero-top"><span><i /> Digital product builder &amp; creative technologist</span><span>India / 2026</span></div><h1><span>building</span><em>real products</em><span>with a sharp eye</span><strong>for detail<span>.</span></strong></h1><div className="hero-bottom"><p>Design, code, systems, and motion<br />for ambitious ideas and brands.</p><button className="down-arrow" onClick={() => navigate('/about')}>↓</button><div className="hero-sticker">✦<small>always creating</small></div></div></section>
+    <section className="hero" id="top">
+      <div className="hero-top"><span><i /> Independent digital builder</span><span>Lucknow, India <b>·</b> Available for opportunities</span></div>
+      <div className="hero-main">
+        <div className="hero-copy">
+          <p className="hero-eyebrow">DE V E S H&nbsp; K U M A R <span> / 2026</span></p>
+          <h1><span>I build</span><em>useful things.</em></h1>
+          <p className="hero-description">Digital products with a sharp eye for detail, a curious mind, and code that brings good ideas to life.</p>
+          <div className="hero-actions"><button className="hero-primary" onClick={() => navigate('/projects')}>Explore my work <span>↗</span></button><button className="hero-secondary" onClick={() => navigate('/about')}>A little about me <span>↓</span></button></div>
+          <div className="hero-facts"><div><strong>04</strong><span>live projects</span></div><i /><div><strong>12<span>+</span></strong><span>tools in my kit</span></div><i /><div><strong>01</strong><span>very curious mind</span></div></div>
+        </div>
+        <div className="hero-portrait">
+          <div className="portrait-frame"><img src="/assets/Devesh.jpeg" alt="Devesh Kumar outside his college" /><span className="portrait-index">DK — 01</span><span className="portrait-caption">Currently making<br /><b>the internet useful.</b></span></div>
+          <div className="portrait-seal"><span>IDEAS<br />INTO<br />IMPACT</span><b>✳</b></div>
+          <span className="portrait-side-note">DESIGN / BUILD / REPEAT</span>
+        </div>
+      </div>
+      <div className="hero-bottom"><span className="hero-scroll"><i /> Scroll to explore</span><div className="hero-capabilities"><span>PRODUCT THINKING</span><i /> <span>INTERFACES</span><i /> <span>FRONT-END</span><i /> <span>GOOD DETAILS</span></div><span className="hero-location">26°50&apos; N&nbsp; 80°56&apos; E</span></div>
+    </section>
     <section className="horizontal-statement"><div className="section-kicker">(01) the point of view</div><div className="statement-inner"><p>I build <mark>real-world products</mark>, not just projects. I care about the idea, the interface, the system underneath, and the feeling people take away.</p><span className="hand-arrow">↘</span></div><div className="statement-footer"><span>Devesh Kumar / product builder</span><span>✳</span></div></section>
     <section className="home-work section-wrap"><div className="section-kicker">(02) selected work</div><div className="showcase-heading"><h2>Real projects<br /><em>made with care.</em></h2><button className="text-link" onClick={() => navigate('/projects')}>View all projects <span>↗</span></button></div><div className="project-grid">{projects.slice(0, 2).map((project) => <ProjectCard key={project.title} project={project} setCursor={setCursor} />)}</div></section>
     <section className="home-cta"><p>Have an idea in mind?</p><button onClick={() => navigate('/contact')}>Let&apos;s build something <span>↗</span></button></section>
